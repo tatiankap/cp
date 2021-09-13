@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import Pagination from "./pagination";
 import User from "./user";
+import { paginate } from "../utils/paginate";
 
-const Users = ({ users, ...rest }) => {
+const Users = ({ users: allUsers, ...rest }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const count = allUsers.length,
+    pageSize = 4;
+
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+
+  const users = paginate(allUsers, currentPage, pageSize);
   return (
     <>
-      {users.length > 0 && (
+      {count > 0 && (
         <table className="table">
           <thead>
             <tr>
@@ -23,6 +34,12 @@ const Users = ({ users, ...rest }) => {
           </tbody>
         </table>
       )}
+      <Pagination
+        itemsCount={count}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 };
