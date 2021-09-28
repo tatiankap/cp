@@ -9,14 +9,16 @@ export default function App() {
         const newArr = users.filter((user) => user._id !== userId);
         setUsers(newArr);
     };
-    const handleToggleBookmark = (id) => {
-        const newUsers = [...users];
-        newUsers.forEach((user, index) => {
-            if (user._id === id) {
-                newUsers[index].status = !newUsers[index].status;
-            }
-        });
-        setUsers(newUsers);
+
+    const handleToggleBookMark = (id) => {
+        setUsers(
+            users.map((user) => {
+                if (user._id === id) {
+                    return { ...user, bookmark: !user.bookmark };
+                }
+                return user;
+            })
+        );
     };
 
     useEffect(() => {
@@ -29,7 +31,7 @@ export default function App() {
                 <Users
                     users={users}
                     handleDelete={handleDelete}
-                    handleToggleBookmark={handleToggleBookmark}
+                    onToggleBookMark={handleToggleBookMark}
                 />
             )}
         </div>
