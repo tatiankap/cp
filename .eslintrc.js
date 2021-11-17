@@ -14,6 +14,7 @@ module.exports = {
     plugins: ["react"],
     rules: {
         indent: ["error", 4],
+        "no-tabs": ["error", { allowIndentationTabs: true }],
         semi: [2, "always"],
         "space-before-function-paren": [
             "error",

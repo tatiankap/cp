@@ -8,8 +8,8 @@ const AppRouter = () => {
     return (
         <Switch>
             <Route path="/" component={Main} exact></Route>
-            <Route path="/login" component={Login}></Route>
-            <Route path="/users/:id?" render={(props) => <Users {...props}/>}></Route>
+            <Route path="/login/:type?" component={Login}></Route>
+            <Route path="/users/:id?/:edit?" render={(props) => <Users {...props}/>}></Route>
         </Switch>
     );
 };
