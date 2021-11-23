@@ -7,7 +7,8 @@ const SelectField = ({
     onChange,
     defaultOption,
     options,
-    error
+    error,
+    name = "profession"
 }) => {
     const getInputClasses = () => {
         return "form-select" + (error ? " is-invalid" : " ");
@@ -35,7 +36,7 @@ const SelectField = ({
                 id="validationCustom04"
                 value={value}
                 onChange={handleChange}
-                name="profession"
+                name={name}
             >
                 <option disabled value="">
                     {defaultOption}
@@ -72,7 +73,8 @@ SelectField.propTypes = {
     onChange: PropTypes.func,
     defaultOption: PropTypes.string,
     error: PropTypes.string,
-    options: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    name: PropTypes.string
 };
 
 export default SelectField;

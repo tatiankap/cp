@@ -89,67 +89,77 @@ const UserPageEdit = ({ userId }) => {
     }, [data]);
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="shadow p-3 m-5 bg-white rounded"
-        >
-            {Object.prototype.hasOwnProperty.call(data, "name") &&
-            professions &&
-            qualities
-                ? (
-                    <>
-                        <TextField
-                            label="Имя"
-                            name="name"
-                            type="text"
-                            value={data.name}
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            label="Электронная почта"
-                            name="email"
-                            type="text"
-                            value={data.email}
-                            error={errors.email}
-                            onChange={handleChange}
-                        />
-                        <SelectField
-                            onChange={handleChange}
-                            options={professions}
-                            label="Выбери свою профессию"
-                            value={data.profession._id}
-                            defaultOption="Выбери свою профессию"
-                        />
-                        <RadioField
-                            options={[
-                                { name: "Male", value: "male" },
-                                { name: "Female", value: "female" },
-                                { name: "Other", value: "other" }
-                            ]}
-                            value={data.sex}
-                            name="sex"
-                            onChange={handleChange}
-                            label="Выберите ваш пол"
-                        />
-                        <MultiSelectField
-                            onChange={handleChange}
-                            options={qualities}
-                            values={data.qualities}
-                            name="qualities"
-                            label="Выберите ваши качества"
-                        />
-                        <button
-                            className="btn btn-primary w-100 mx-auto"
-                            type="submit"
-                        >
-                        Обновить
-                        </button>
-                    </>
-                )
-                : (
-                    <h4>Loading...</h4>
-                )}
-        </form>
+        <div className="container">
+            <div className="row gutters-sm">
+                <div className="col-md-2 mb-3">
+                    <button className="btn btn-primary mx-auto" onClick={() => history.push(`/users/${data._id}`)}><i className="bi bi-arrow-left-circle mx-2"/>Назад</button>
+                </div>
+
+                <div className="col-md-10">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="shadow p-3 m-5 bg-white rounded"
+                    >
+                        {Object.prototype.hasOwnProperty.call(data, "name") &&
+                        professions &&
+                        qualities
+                            ? (
+                                <>
+                                    <TextField
+                                        label="Имя"
+                                        name="name"
+                                        type="text"
+                                        value={data.name}
+                                        onChange={handleChange}
+                                    />
+                                    <TextField
+                                        label="Электронная почта"
+                                        name="email"
+                                        type="text"
+                                        value={data.email}
+                                        error={errors.email}
+                                        onChange={handleChange}
+                                    />
+                                    <SelectField
+                                        onChange={handleChange}
+                                        options={professions}
+                                        label="Выбери свою профессию"
+                                        value={data.profession._id}
+                                        defaultOption="Выбери свою профессию"
+                                    />
+                                    <RadioField
+                                        options={[
+                                            { name: "Male", value: "male" },
+                                            { name: "Female", value: "female" },
+                                            { name: "Other", value: "other" }
+                                        ]}
+                                        value={data.sex}
+                                        name="sex"
+                                        onChange={handleChange}
+                                        label="Выберите ваш пол"
+                                    />
+                                    <MultiSelectField
+                                        onChange={handleChange}
+                                        options={qualities}
+                                        values={data.qualities}
+                                        name="qualities"
+                                        label="Выберите ваши качества"
+                                    />
+                                    <button
+                                        className="btn btn-primary w-100 mx-auto"
+                                        type="submit"
+                                    >
+                                    Обновить
+                                    </button>
+                                </>
+                            )
+                            : (
+                                <h4>Loading...</h4>
+                            )}
+                    </form>
+                </div>
+            </div>
+        </div>
     );
 };
 
